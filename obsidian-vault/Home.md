@@ -5,8 +5,11 @@ Sistema de organização financeira pessoal com foco em **plano semanal de gasto
 ## Mapa
 
 - [[Decisões/ADR-001-stack-e-arquitetura|ADR-001 — Stack e arquitetura]]
+- [[Decisões/ADR-002-parcelamento-no-cartao|ADR-002 — Parcelamento no cartão]]
 - [[Regras/Regras-de-negocio|Regras de negócio]]
 - [[Log/2026-11-01-scaffold|Log — Scaffold]]
+- [[Log/2026-11-01-domain|Log — Domain]]
+- [[Log/2026-11-01-store|Log — Schemas e store]]
 - [[Pendencias|Pendências]]
 
 ## Links úteis
