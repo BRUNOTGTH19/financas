@@ -1,15 +1,27 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+import MonthLayout from './components/MonthLayout';
+import { currentMonthKey } from './lib/dates';
+import { monthPath } from './lib/navigation';
+import DashboardPage from './pages/DashboardPage';
+import ExpensesPage from './pages/ExpensesPage';
+import FixedExpensesPage from './pages/FixedExpensesPage';
+import NotFoundPage from './pages/NotFoundPage';
+import SettingsPage from './pages/SettingsPage';
+import WeeksPage from './pages/WeeksPage';
+
 export default function App() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-950 text-2xl font-black text-lime">
-        S
-      </div>
-      <div className="text-center">
-        <h1 className="text-3xl font-extrabold tracking-tight">Spendly</h1>
-        <p className="mt-2 max-w-sm text-sm text-ink/60">
-          Seu plano semanal de gastos está sendo preparado.
-        </p>
-      </div>
-    </main>
+    <Routes>
+      <Route path="/" element={<Navigate to={monthPath(currentMonthKey(), 'inicio')} replace />} />
+      <Route path="/mes/:month" element={<MonthLayout />}>
+        <Route index element={<Navigate to="inicio" replace />} />
+        <Route path="inicio" element={<DashboardPage />} />
+        <Route path="semanas" element={<WeeksPage />} />
+        <Route path="gastos" element={<ExpensesPage />} />
+        <Route path="fixos" element={<FixedExpensesPage />} />
+        <Route path="configuracoes" element={<SettingsPage />} />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
