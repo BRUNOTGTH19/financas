@@ -15,11 +15,13 @@ Sistema de organização financeira pessoal com foco em **plano semanal de gasto
 - [[Log/2026-11-01-semanas|Log — Semanas]]
 - [[Log/2026-11-01-dashboard|Log — Dashboard]]
 - [[Log/2026-11-01-configuracoes|Log — Configurações]]
+- [[Log/2026-11-01-deploy-e-documentacao|Log — Deploy e documentação]]
 - [[Pendencias|Pendências]]
 
 ## Links úteis
 
-- `docs/` — documentação executável por agente
+- `README.md` — visão geral, scripts e deploy
+- `docs/guia-do-agente.md` — documentação executável por agente
 - `src/domain/` — regras puras, sem React
 - Repositório: `financas-semanais`
 

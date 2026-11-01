@@ -7,5 +7,6 @@
 - [x] Tela de Semanas e avisos
 - [x] Dashboard com projeção
 - [x] Configurações
-- [ ] Workflow de deploy
-- [ ] Documentação final
+- [x] Workflow de deploy
+- [x] Documentação final
+- [ ] Publicar no GitHub Pages (requer repositório remoto)
