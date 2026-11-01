@@ -4,7 +4,7 @@
 - [x] Schemas Zod e store com persist
 - [x] Shell de navegação e tela de Fixos
 - [x] Tela de Gastos
-- [ ] Tela de Semanas e avisos
+- [x] Tela de Semanas e avisos
 - [ ] Dashboard com projeção
 - [ ] Configurações
 - [ ] Workflow de deploy
