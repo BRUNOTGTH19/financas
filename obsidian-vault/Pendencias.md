@@ -6,6 +6,6 @@
 - [x] Tela de Gastos
 - [x] Tela de Semanas e avisos
 - [x] Dashboard com projeção
-- [ ] Configurações
+- [x] Configurações
 - [ ] Workflow de deploy
 - [ ] Documentação final
