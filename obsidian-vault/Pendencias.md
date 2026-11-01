@@ -5,7 +5,7 @@
 - [x] Shell de navegação e tela de Fixos
 - [x] Tela de Gastos
 - [x] Tela de Semanas e avisos
-- [ ] Dashboard com projeção
+- [x] Dashboard com projeção
 - [ ] Configurações
 - [ ] Workflow de deploy
 - [ ] Documentação final
