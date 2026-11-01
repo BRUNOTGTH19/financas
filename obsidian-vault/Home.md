@@ -1,0 +1,22 @@
+# Spendly — Vault do projeto
+
+Sistema de organização financeira pessoal com foco em **plano semanal de gastos**.
+
+## Mapa
+
+- [[Decisões/ADR-001-stack-e-arquitetura|ADR-001 — Stack e arquitetura]]
+- [[Regras/Regras-de-negocio|Regras de negócio]]
+- [[Log/2026-11-01-scaffold|Log — Scaffold]]
+- [[Pendencias|Pendências]]
+
+## Links úteis
+
+- `docs/` — documentação executável por agente
+- `src/domain/` — regras puras, sem React
+- Repositório: `financas-semanais`
+
+## Convenções
+
+- Valores monetários sempre em **centavos inteiros**.
+- Um commit por entrega, Conventional Commits em português.
+- Toda decisão relevante vira nota neste vault.
