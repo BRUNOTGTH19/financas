@@ -12,4 +12,4 @@
 - [x] Backup JSON com exportação, importação, validação e testes
 - [x] Copiar resumo para IA com testes
 - [x] Darkmode com preferência claro, escuro e sistema
-- [ ] Publicar no GitHub Pages
+- [x] Publicar no GitHub Pages em <https://BRUNOTGTH19.github.io/financas/>

@@ -168,9 +168,10 @@ Formulário/UI
 
 ## Deploy
 
+- URL publicada: <https://BRUNOTGTH19.github.io/financas/>.
 - Workflow: `.github/workflows/deploy.yml`.
 - Trigger: push em `main` ou execução manual.
 - Source do GitHub Pages: `GitHub Actions`.
-- `VITE_BASE` é definido no workflow com o nome do repositório.
-- Para `usuario.github.io`, use `VITE_BASE=/`.
-- O `HashRouter` dispensa fallback de servidor para rotas da SPA.
+- Base de produção: `/financas/`, definida em `vite.config.ts`; o workflow não sobrescreve a base.
+- O `HashRouter` dispensa fallback de servidor para as rotas da SPA.
+- Validar a URL depois do deploy e conferir que os assets carregam de `/financas/assets/`.

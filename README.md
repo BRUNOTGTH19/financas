@@ -2,6 +2,8 @@
 
 Planejamento financeiro pessoal com foco em tetos de gasto semanais.
 
+Aplicação publicada: <https://BRUNOTGTH19.github.io/financas/>.
+
 O Spendly transforma a renda do mês, menos os gastos fixos, em quatro tetos semanais. A partir
 deles, mostra o ritmo dos gastos, avisos de estouro e a projeção de quanto deve sobrar no fim do
 mês.
@@ -109,8 +111,9 @@ O workflow `.github/workflows/deploy.yml` publica o app no GitHub Pages a cada p
 2. Garanta que a branch principal se chama `main`.
 3. Faça push para `main` e acompanhe o workflow `Deploy GitHub Pages`.
 
-O build usa `VITE_BASE` com o nome do repositório. O padrão local é `/financas-semanais/`. Para um
-repositório de usuário (`usuario.github.io`), configure `VITE_BASE=/` no workflow.
+O build de produção usa a base `/financas/`, definida em `vite.config.ts`, e o `HashRouter` dispensa
+fallback de servidor para as rotas. O workflow não define mais `VITE_BASE`; a base é explícita para
+o repositório `financas`.
 
 ## Documentação
 
