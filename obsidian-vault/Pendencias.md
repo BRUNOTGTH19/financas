@@ -11,5 +11,5 @@
 - [x] Documentação final
 - [x] Backup JSON com exportação, importação, validação e testes
 - [x] Copiar resumo para IA com testes
-- [ ] Darkmode com preferência claro, escuro e sistema
+- [x] Darkmode com preferência claro, escuro e sistema
 - [ ] Publicar no GitHub Pages

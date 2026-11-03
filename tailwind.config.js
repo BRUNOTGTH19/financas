@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        cream: '#F5F2EA',
-        paper: '#FCFBF7',
-        ink: '#14211A',
+        cream: 'rgb(var(--color-cream) / <alpha-value>)',
+        paper: 'rgb(var(--color-paper) / <alpha-value>)',
+        ink: 'rgb(var(--color-ink) / <alpha-value>)',
         lime: '#D8F36B',
         brand: {
           50: '#F1F8F2',

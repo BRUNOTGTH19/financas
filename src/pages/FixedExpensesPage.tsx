@@ -95,7 +95,7 @@ export default function FixedExpensesPage() {
       />
 
       <section className="grid gap-3 sm:grid-cols-2" aria-label="Resumo dos fixos">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float sm:p-6">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float dark:border dark:border-white/10 sm:p-6">
           <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-lime/10 blur-2xl" />
           <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/45">
             <RepeatIcon className="h-3.5 w-3.5" />
@@ -117,7 +117,7 @@ export default function FixedExpensesPage() {
             <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink/35">
               Comprometimento da renda
             </p>
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
               <WalletIcon className="h-4 w-4" />
             </span>
           </div>
@@ -144,7 +144,7 @@ export default function FixedExpensesPage() {
               </p>
               <Link
                 to={monthPath(month, 'configuracoes')}
-                className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 transition hover:text-brand-900"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 transition hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
               >
                 Ir para ajustes
                 <ArrowRightIcon className="h-4 w-4" />
@@ -159,7 +159,9 @@ export default function FixedExpensesPage() {
           <button
             type="button"
             className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
-              tab === 'active' ? 'bg-brand-950 text-white' : 'text-ink/45 hover:text-ink'
+              tab === 'active'
+                ? 'bg-brand-950 text-white dark:bg-lime dark:text-brand-950'
+                : 'text-ink/45 hover:text-ink'
             }`}
             aria-pressed={tab === 'active'}
             onClick={() => setTab('active')}
@@ -169,7 +171,9 @@ export default function FixedExpensesPage() {
           <button
             type="button"
             className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
-              tab === 'all' ? 'bg-brand-950 text-white' : 'text-ink/45 hover:text-ink'
+              tab === 'all'
+                ? 'bg-brand-950 text-white dark:bg-lime dark:text-brand-950'
+                : 'text-ink/45 hover:text-ink'
             }`}
             aria-pressed={tab === 'all'}
             onClick={() => setTab('all')}
@@ -218,7 +222,7 @@ export default function FixedExpensesPage() {
             return (
               <li key={fixed.id} className="card p-4 sm:p-5">
                 <div className="flex items-start gap-3 sm:gap-4">
-                  <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+                  <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
                     <RepeatIcon className="h-[18px] w-[18px]" />
                   </span>
                   <div className="min-w-0 flex-1">
@@ -256,7 +260,7 @@ export default function FixedExpensesPage() {
                     {state === 'active' ? (
                       <button
                         type="button"
-                        className="inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[11px] font-bold text-ink/45 transition hover:bg-brand-50 hover:text-brand-700"
+                        className="inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[11px] font-bold text-ink/45 transition hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-400/15 dark:hover:text-brand-200"
                         onClick={() => setFixedSettled(fixed.id, month, true)}
                         aria-label={`Quitar ${fixed.name} a partir deste mês`}
                       >
@@ -267,7 +271,7 @@ export default function FixedExpensesPage() {
                     {state === 'settled' ? (
                       <button
                         type="button"
-                        className="inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[11px] font-bold text-ink/45 transition hover:bg-brand-50 hover:text-brand-700"
+                        className="inline-flex items-center gap-1 rounded-full px-2.5 py-1.5 text-[11px] font-bold text-ink/45 transition hover:bg-brand-50 hover:text-brand-700 dark:hover:bg-brand-400/15 dark:hover:text-brand-200"
                         onClick={() => setFixedSettled(fixed.id, month, false)}
                         aria-label={`Reativar ${fixed.name}`}
                       >

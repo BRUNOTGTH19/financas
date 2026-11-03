@@ -21,10 +21,10 @@ export default function CurrencyInput({
 
   return (
     <div
-      className={`flex items-center gap-2 rounded-2xl border bg-white px-4 py-3 transition focus-within:ring-2 ${
+      className={`flex items-center gap-2 rounded-2xl border bg-white px-4 py-3 transition focus-within:ring-2 dark:bg-white/5 ${
         invalid
-          ? 'border-rose-300 focus-within:border-rose-400 focus-within:ring-rose-400/20'
-          : 'border-ink/10 focus-within:border-brand-500 focus-within:ring-brand-500/20'
+          ? 'border-rose-300 focus-within:border-rose-400 focus-within:ring-rose-400/20 dark:border-rose-400/50 dark:focus-within:border-rose-300'
+          : 'border-ink/10 focus-within:border-brand-500 focus-within:ring-brand-500/20 dark:border-white/10'
       }`}
     >
       <span className="text-sm font-bold text-ink/40">R$</span>

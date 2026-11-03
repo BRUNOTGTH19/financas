@@ -17,6 +17,7 @@ mês.
 - Exportação e importação de backup JSON, com validação Zod, mesclagem por `id` e confirmação
   antes de substituir os dados.
 - Resumo do mês em texto para colar em uma IA externa, copiado com a Clipboard API.
+- Tema claro, escuro ou automático (segue o sistema), com preferência salva no navegador.
 - Navegação por mês, layout responsivo e persistência local.
 
 ## Stack
@@ -69,6 +70,7 @@ src/
   pages/        Dashboard, Semanas, Gastos, Fixos e Configurações
   schemas/      Schemas Zod de entrada e de persistência
   store/        Store Zustand com persistência versionada
+  theme/        Preferência de tema, resolução e provider React
 tests/
   app/          Navegação e smoke tests
   domain/       Testes das regras puras
@@ -95,6 +97,8 @@ obsidian-vault/ Decisões, regras, logs e pendências
 - Backup JSON na versão 1: `version`, `exportedAt` e `data`. A importação valida o arquivo inteiro
   antes de alterar qualquer dado. A mesclagem usa `id` para não duplicar registros e preserva a meta
   local quando já existe uma definida.
+- O tema é salvo em `fin:theme` com os valores `light`, `dark` ou `system`; o padrão é `system`. A
+  classe `dark` é aplicada antes da primeira renderização para evitar flash de tema.
 
 ## Deploy
 

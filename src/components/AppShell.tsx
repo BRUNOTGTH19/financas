@@ -37,17 +37,19 @@ export default function AppShell({ month }: { month: string }) {
                 className={({ isActive }) =>
                   `flex items-center gap-3 rounded-2xl px-3.5 py-3 text-sm font-bold transition ${
                     isActive
-                      ? 'bg-brand-950 text-white shadow-card'
-                      : 'text-ink/55 hover:bg-white/70 hover:text-ink'
+                      ? 'bg-brand-950 text-white shadow-card dark:bg-lime dark:text-brand-950 dark:shadow-none'
+                      : 'text-ink/55 hover:bg-white/70 hover:text-ink dark:hover:bg-white/5'
                   }`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    <Icon className={`h-[18px] w-[18px] ${isActive ? 'text-lime' : ''}`} />
+                    <Icon
+                      className={`h-[18px] w-[18px] ${isActive ? 'text-lime dark:text-brand-900' : ''}`}
+                    />
                     <span>{item.label}</span>
                     {isActive ? (
-                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-lime" />
+                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-lime dark:bg-brand-900" />
                     ) : null}
                   </>
                 )}
@@ -56,7 +58,7 @@ export default function AppShell({ month }: { month: string }) {
           })}
         </nav>
 
-        <div className="mt-auto rounded-3xl bg-brand-900 p-5 text-white">
+        <div className="mt-auto rounded-3xl bg-brand-900 p-5 text-white dark:border dark:border-white/10">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-lime/15 text-lime">
             <SparklesIcon className="h-4 w-4" />
           </span>
@@ -97,7 +99,7 @@ export default function AppShell({ month }: { month: string }) {
                   to={monthPath(month, item.section)}
                   className={({ isActive }) =>
                     `flex flex-col items-center gap-1 rounded-2xl px-1 py-1.5 text-[10px] font-bold transition ${
-                      isActive ? 'text-brand-950' : 'text-ink/40'
+                      isActive ? 'text-brand-950 dark:text-lime' : 'text-ink/40'
                     }`
                   }
                 >
@@ -105,7 +107,7 @@ export default function AppShell({ month }: { month: string }) {
                     <>
                       <span
                         className={`flex h-8 w-11 items-center justify-center rounded-xl transition ${
-                          isActive ? 'bg-lime/70 text-brand-950' : 'text-ink/40'
+                          isActive ? 'bg-lime/70 text-brand-950 dark:bg-lime' : 'text-ink/40'
                         }`}
                       >
                         <Icon className="h-[18px] w-[18px]" />

@@ -184,7 +184,7 @@ export default function ExpenseForm({
             </p>
           </div>
         ) : (
-          <div className="flex items-center gap-2 rounded-2xl bg-brand-50/70 px-3.5 py-3 text-xs font-semibold text-brand-800">
+          <div className="flex items-center gap-2 rounded-2xl bg-brand-50/70 px-3.5 py-3 text-xs font-semibold text-brand-800 dark:bg-brand-400/10 dark:text-brand-200">
             <PaymentMethodIcon method={method} className="h-4 w-4 shrink-0" />
             {method === 'debito' || method === 'pix'
               ? 'Boa escolha: pagar à vista mantém o cartão longe do próximo mês.'

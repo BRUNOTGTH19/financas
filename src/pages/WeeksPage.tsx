@@ -70,9 +70,10 @@ function AlertCard({
   children: ReactNode;
 }) {
   const toneClasses = {
-    rose: 'border-rose-200 bg-rose-50/80 text-rose-900',
-    amber: 'border-amber-200 bg-amber-50/80 text-amber-900',
-    sky: 'border-sky-200 bg-sky-50/80 text-sky-900',
+    rose: 'border-rose-200 bg-rose-50/80 text-rose-900 dark:border-rose-400/30 dark:bg-rose-400/10 dark:text-rose-100',
+    amber:
+      'border-amber-200 bg-amber-50/80 text-amber-900 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-100',
+    sky: 'border-sky-200 bg-sky-50/80 text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/10 dark:text-sky-100',
   };
 
   return (
@@ -182,7 +183,7 @@ export default function WeeksPage() {
       ) : null}
 
       <section className="grid gap-3 sm:grid-cols-2" aria-label="Resumo das semanas">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float sm:p-6">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float dark:border dark:border-white/10 sm:p-6">
           <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-lime/10 blur-2xl" />
           <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/45">
             <CalendarIcon className="h-3.5 w-3.5" />
@@ -207,7 +208,7 @@ export default function WeeksPage() {
             <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink/35">
               Uso do disponível
             </p>
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
               <WalletIcon className="h-4 w-4" />
             </span>
           </div>
@@ -228,7 +229,13 @@ export default function WeeksPage() {
           />
           <div className="mt-2 flex items-center justify-between gap-3 text-[11px] font-semibold text-ink/40">
             <span>{formatPercent(budget.spentPercent / 100)} usado</span>
-            <span className={budget.balance < 0 ? 'text-rose-600' : 'text-brand-700'}>
+            <span
+              className={
+                budget.balance < 0
+                  ? 'text-rose-600 dark:text-rose-300'
+                  : 'text-brand-700 dark:text-brand-300'
+              }
+            >
               {budget.balance < 0
                 ? `Estourou ${formatCents(Math.abs(budget.balance))}`
                 : `${formatCents(budget.balance)} de saldo`}
@@ -282,7 +289,9 @@ export default function WeeksPage() {
                 key={week.week.index}
                 aria-label={`Semana ${week.week.index}: ${week.week.label}`}
                 className={`card p-4 transition sm:p-5 ${
-                  isCurrent ? 'ring-2 ring-brand-950/10 ring-offset-2 ring-offset-cream' : ''
+                  isCurrent
+                    ? 'ring-2 ring-brand-950/10 ring-offset-2 ring-offset-cream dark:ring-lime/30'
+                    : ''
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
@@ -327,7 +336,13 @@ export default function WeeksPage() {
                       ? `${formatPercent(week.percent / 100)} do teto`
                       : 'Teto não definido'}
                   </span>
-                  <span className={week.remaining < 0 ? 'text-rose-600' : 'text-brand-700'}>
+                  <span
+                    className={
+                      week.remaining < 0
+                        ? 'text-rose-600 dark:text-rose-300'
+                        : 'text-brand-700 dark:text-brand-300'
+                    }
+                  >
                     {week.remaining < 0
                       ? `Excedeu ${formatCents(Math.abs(week.remaining))}`
                       : `Livre ${formatCents(week.remaining)}`}

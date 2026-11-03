@@ -1,10 +1,10 @@
 export type ProgressTone = 'brand' | 'amber' | 'rose' | 'lime' | 'ink';
 
 const trackClasses: Record<ProgressTone, string> = {
-  brand: 'bg-brand-100',
-  amber: 'bg-amber-100',
-  rose: 'bg-rose-100',
-  lime: 'bg-lime/30',
+  brand: 'bg-brand-100 dark:bg-brand-400/20',
+  amber: 'bg-amber-100 dark:bg-amber-400/20',
+  rose: 'bg-rose-100 dark:bg-rose-400/20',
+  lime: 'bg-lime/30 dark:bg-lime/20',
   ink: 'bg-white/15',
 };
 

@@ -8,20 +8,26 @@ import FixedExpensesPage from './pages/FixedExpensesPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SettingsPage from './pages/SettingsPage';
 import WeeksPage from './pages/WeeksPage';
+import ThemeProvider from './theme/ThemeProvider';
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to={monthPath(currentMonthKey(), 'inicio')} replace />} />
-      <Route path="/mes/:month" element={<MonthLayout />}>
-        <Route index element={<Navigate to="inicio" replace />} />
-        <Route path="inicio" element={<DashboardPage />} />
-        <Route path="semanas" element={<WeeksPage />} />
-        <Route path="gastos" element={<ExpensesPage />} />
-        <Route path="fixos" element={<FixedExpensesPage />} />
-        <Route path="configuracoes" element={<SettingsPage />} />
-      </Route>
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <ThemeProvider>
+      <Routes>
+        <Route
+          path="/"
+          element={<Navigate to={monthPath(currentMonthKey(), 'inicio')} replace />}
+        />
+        <Route path="/mes/:month" element={<MonthLayout />}>
+          <Route index element={<Navigate to="inicio" replace />} />
+          <Route path="inicio" element={<DashboardPage />} />
+          <Route path="semanas" element={<WeeksPage />} />
+          <Route path="gastos" element={<ExpensesPage />} />
+          <Route path="fixos" element={<FixedExpensesPage />} />
+          <Route path="configuracoes" element={<SettingsPage />} />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </ThemeProvider>
   );
 }

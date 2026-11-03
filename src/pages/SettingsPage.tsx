@@ -3,6 +3,7 @@ import BackupPanel from '../components/BackupPanel';
 import ConfirmDialog from '../components/ConfirmDialog';
 import CurrencyInput from '../components/CurrencyInput';
 import PageHeader from '../components/PageHeader';
+import ThemeSelector from '../components/ThemeSelector';
 import { BanknoteIcon, TargetIcon, TrashIcon } from '../components/icons';
 import { monthLabel } from '../domain/calendar';
 import { useMonth } from '../hooks/useMonth';
@@ -43,7 +44,7 @@ function SalaryForm({ month, initialAmount }: { month: string; initialAmount: nu
             semanais.
           </p>
         </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-lime/40 text-brand-800">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-lime/40 text-brand-800 dark:bg-lime/15 dark:text-lime">
           <BanknoteIcon className="h-[18px] w-[18px]" />
         </span>
       </div>
@@ -76,7 +77,7 @@ function SalaryForm({ month, initialAmount }: { month: string; initialAmount: nu
         )}
 
         <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p role="status" className="text-xs font-semibold text-brand-700">
+          <p role="status" className="text-xs font-semibold text-brand-700 dark:text-brand-300">
             {saved ? `Renda atualizada para ${formatCents(amount)}.` : ''}
           </p>
           <button type="submit" className="btn-primary btn-sm self-start sm:self-auto">
@@ -121,7 +122,7 @@ function SavingsGoalForm({ initialAmount }: { initialAmount: number }) {
             os meses.
           </p>
         </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
           <TargetIcon className="h-[18px] w-[18px]" />
         </span>
       </div>
@@ -154,7 +155,7 @@ function SavingsGoalForm({ initialAmount }: { initialAmount: number }) {
         )}
 
         <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p role="status" className="text-xs font-semibold text-brand-700">
+          <p role="status" className="text-xs font-semibold text-brand-700 dark:text-brand-300">
             {saved ? `Meta atualizada para ${formatCents(amount)}.` : ''}
           </p>
           <button type="submit" className="btn-primary btn-sm self-start sm:self-auto">
@@ -192,32 +193,34 @@ export default function SettingsPage() {
         <SavingsGoalForm key={`goal-${formVersion}`} initialAmount={savingsGoal} />
       </section>
 
+      <ThemeSelector />
+
       <BackupPanel onImported={() => setFormVersion((version) => version + 1)} />
 
       <section
-        className="rounded-3xl border border-rose-200/80 bg-rose-50/40 p-5 sm:p-6"
+        className="rounded-3xl border border-rose-200/80 bg-rose-50/40 p-5 dark:border-rose-400/20 dark:bg-rose-950/20 sm:p-6"
         aria-label="Dados salvos"
       >
         <div className="flex items-start justify-between gap-3">
           <div>
-            <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-rose-700/50">
+            <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-rose-700/50 dark:text-rose-300/70">
               Privacidade
             </p>
-            <h2 className="mt-1 text-lg font-extrabold tracking-tight text-rose-950">
+            <h2 className="mt-1 text-lg font-extrabold tracking-tight text-rose-950 dark:text-rose-100">
               Dados deste dispositivo
             </h2>
-            <p className="mt-1 max-w-xl text-xs font-medium leading-relaxed text-rose-950/55">
+            <p className="mt-1 max-w-xl text-xs font-medium leading-relaxed text-rose-950/55 dark:text-rose-100/70">
               Tudo fica no localStorage deste navegador. Nada é enviado para servidores. Apagar os
               dados remove rendas, fixos, gastos e a meta de uma vez.
             </p>
           </div>
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-rose-100 text-rose-700">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-rose-100 text-rose-700 dark:bg-rose-400/15 dark:text-rose-300">
             <TrashIcon className="h-[18px] w-[18px]" />
           </span>
         </div>
 
-        <div className="mt-5 flex flex-col gap-3 border-t border-rose-200/70 pt-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-semibold text-rose-950/45">
+        <div className="mt-5 flex flex-col gap-3 border-t border-rose-200/70 pt-4 dark:border-rose-400/20 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs font-semibold text-rose-950/45 dark:text-rose-100/60">
             {incomes.length} {incomes.length === 1 ? 'mês com renda' : 'meses com renda'} ·{' '}
             {fixedExpenses.length} {fixedExpenses.length === 1 ? 'fixo' : 'fixos'} ·{' '}
             {expenses.length} {expenses.length === 1 ? 'gasto' : 'gastos'}
@@ -233,7 +236,7 @@ export default function SettingsPage() {
         </div>
 
         {resetDone ? (
-          <p role="status" className="mt-3 text-xs font-semibold text-rose-700">
+          <p role="status" className="mt-3 text-xs font-semibold text-rose-700 dark:text-rose-300">
             Renda, fixos, gastos e meta foram apagados deste navegador.
           </p>
         ) : null}

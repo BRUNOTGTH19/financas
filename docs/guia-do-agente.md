@@ -70,6 +70,20 @@ Formulário/UI
 - O dashboard copia com `navigator.clipboard.writeText` e mostra confirmação ou erro de permissão.
 - Testes em `tests/domain/summary.test.ts` e `tests/pages/dashboardPage.test.tsx`.
 
+## Tema e aparência
+
+- Preferências: `light`, `dark` ou `system`; o padrão é `system`.
+- Persistência: chave `fin:theme` no `localStorage`, isolada dos dados financeiros (`fin:v1`).
+- A resolução e a aplicação da classe `dark` ficam em `src/theme/theme.ts`; o estado React fica em
+  `src/theme/ThemeProvider.tsx` e é exposto por `useTheme`.
+- O script inline em `index.html` aplica o tema antes da primeira renderização para evitar flash.
+- `tailwind.config.js` usa `darkMode: 'class'`. As cores base (`cream`, `paper`, `ink`) são variáveis
+  CSS definidas em `src/index.css`; os demais estados usam variantes `dark:` explícitas.
+- Novos componentes devem incluir variantes escuras para fundos, bordas, ícones e textos de status,
+  preservando contraste AA.
+- A seleção fica em Configurações, no painel **Aparência**. Testes em `tests/theme/` e
+  `tests/pages/settingsPage.test.tsx`.
+
 ## Invariantes
 
 - Dinheiro em centavos inteiros (`number`). Nunca use float para armazenar valores.
@@ -86,24 +100,25 @@ Formulário/UI
 
 ## Mapa dos arquivos
 
-| Área          | Arquivos principais                                                               |
-| ------------- | --------------------------------------------------------------------------------- |
-| Calendário    | `src/domain/calendar.ts`                                                          |
-| Orçamento     | `src/domain/budget.ts`                                                            |
-| Projeção      | `src/domain/projection.ts`                                                        |
-| Resumo IA     | `src/domain/summary.ts`                                                           |
-| Tipos         | `src/domain/types.ts`                                                             |
-| Validação     | `src/schemas/finance.ts`, `src/schemas/backup.ts`                                 |
-| Backup        | `src/lib/backup.ts`, `src/components/BackupPanel.tsx`                             |
-| Estado        | `src/store/financeStore.ts`                                                       |
-| Rotas         | `src/App.tsx`, `src/components/MonthLayout.tsx`, `src/lib/navigation.ts`          |
-| Shell e UI    | `src/components/AppShell.tsx`, `PageHeader.tsx`, `Modal.tsx`, `CurrencyInput.tsx` |
-| Dashboard     | `src/pages/DashboardPage.tsx`                                                     |
-| Semanas       | `src/pages/WeeksPage.tsx`                                                         |
-| Gastos        | `src/pages/ExpensesPage.tsx`, `src/components/ExpenseForm.tsx`                    |
-| Fixos         | `src/pages/FixedExpensesPage.tsx`, `src/components/FixedExpenseForm.tsx`          |
-| Configurações | `src/pages/SettingsPage.tsx`                                                      |
-| Deploy        | `.github/workflows/deploy.yml`                                                    |
+| Área          | Arquivos principais                                                                     |
+| ------------- | --------------------------------------------------------------------------------------- |
+| Calendário    | `src/domain/calendar.ts`                                                                |
+| Orçamento     | `src/domain/budget.ts`                                                                  |
+| Projeção      | `src/domain/projection.ts`                                                              |
+| Resumo IA     | `src/domain/summary.ts`                                                                 |
+| Tipos         | `src/domain/types.ts`                                                                   |
+| Validação     | `src/schemas/finance.ts`, `src/schemas/backup.ts`                                       |
+| Backup        | `src/lib/backup.ts`, `src/components/BackupPanel.tsx`                                   |
+| Estado        | `src/store/financeStore.ts`                                                             |
+| Rotas         | `src/App.tsx`, `src/components/MonthLayout.tsx`, `src/lib/navigation.ts`                |
+| Shell e UI    | `src/components/AppShell.tsx`, `PageHeader.tsx`, `Modal.tsx`, `CurrencyInput.tsx`       |
+| Tema          | `src/theme/theme.ts`, `src/theme/ThemeProvider.tsx`, `src/components/ThemeSelector.tsx` |
+| Dashboard     | `src/pages/DashboardPage.tsx`                                                           |
+| Semanas       | `src/pages/WeeksPage.tsx`                                                               |
+| Gastos        | `src/pages/ExpensesPage.tsx`, `src/components/ExpenseForm.tsx`                          |
+| Fixos         | `src/pages/FixedExpensesPage.tsx`, `src/components/FixedExpenseForm.tsx`                |
+| Configurações | `src/pages/SettingsPage.tsx`                                                            |
+| Deploy        | `.github/workflows/deploy.yml`                                                          |
 
 ## Como evoluir
 

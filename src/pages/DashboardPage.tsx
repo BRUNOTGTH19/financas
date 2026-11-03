@@ -140,11 +140,11 @@ export default function DashboardPage() {
               </Link>
             </div>
             {copyStatus === 'success' ? (
-              <p role="status" className="text-xs font-semibold text-brand-700">
+              <p role="status" className="text-xs font-semibold text-brand-700 dark:text-brand-300">
                 Copiado!
               </p>
             ) : copyStatus === 'error' ? (
-              <p role="alert" className="text-xs font-semibold text-rose-600">
+              <p role="alert" className="text-xs font-semibold text-rose-600 dark:text-rose-300">
                 Não foi possível copiar. Verifique a permissão do navegador.
               </p>
             ) : null}
@@ -155,9 +155,9 @@ export default function DashboardPage() {
       {budget.salary <= 0 ? (
         <div
           role="status"
-          className="flex flex-col gap-3 rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3.5 text-sky-900 sm:flex-row sm:items-center"
+          className="flex flex-col gap-3 rounded-2xl border border-sky-200 bg-sky-50/80 px-4 py-3.5 text-sky-900 dark:border-sky-400/30 dark:bg-sky-400/10 dark:text-sky-100 sm:flex-row sm:items-center"
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-100">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sky-100 dark:bg-sky-400/20">
             <InfoIcon className="h-4 w-4" />
           </span>
           <div className="min-w-0 flex-1">
@@ -168,7 +168,7 @@ export default function DashboardPage() {
           </div>
           <Link
             to={monthPath(month, 'configuracoes')}
-            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-sky-900 px-3.5 py-2 text-xs font-extrabold text-white transition hover:bg-sky-800"
+            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-sky-900 px-3.5 py-2 text-xs font-extrabold text-white transition hover:bg-sky-800 dark:bg-sky-300 dark:text-sky-950 dark:hover:bg-sky-200"
           >
             Definir renda
             <ArrowRightIcon className="h-3.5 w-3.5" />
@@ -177,7 +177,7 @@ export default function DashboardPage() {
       ) : budget.overcommitted ? (
         <div
           role="status"
-          className="flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50/80 px-4 py-3.5 text-rose-900"
+          className="flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50/80 px-4 py-3.5 text-rose-900 dark:border-rose-400/30 dark:bg-rose-400/10 dark:text-rose-100"
         >
           <AlertTriangleIcon className="mt-0.5 h-5 w-5 shrink-0" />
           <div>
@@ -190,7 +190,7 @@ export default function DashboardPage() {
       ) : null}
 
       <section className="grid gap-3 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float sm:p-6">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float dark:border dark:border-white/10 sm:p-6">
           <div className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-lime/10 blur-3xl" />
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/45">
@@ -233,7 +233,7 @@ export default function DashboardPage() {
             <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink/35">
               Projeção de fim de mês
             </p>
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
               <TrendUpIcon className="h-4 w-4" />
             </span>
           </div>
@@ -291,7 +291,7 @@ export default function DashboardPage() {
             <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink/35">
               Renda do mês
             </p>
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-lime/40 text-brand-800">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-lime/40 text-brand-800 dark:bg-lime/15 dark:text-lime">
               <BanknoteIcon className="h-4 w-4" />
             </span>
           </div>
@@ -300,7 +300,7 @@ export default function DashboardPage() {
           </p>
           <Link
             to={monthPath(month, 'configuracoes')}
-            className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-brand-700 transition hover:text-brand-900"
+            className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-brand-700 transition hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
           >
             {budget.salary > 0 ? 'Ajustar renda' : 'Informar renda'}
             <ArrowRightIcon className="h-3 w-3" />
@@ -312,7 +312,7 @@ export default function DashboardPage() {
             <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink/35">
               Fixos ativos
             </p>
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
               <RepeatIcon className="h-4 w-4" />
             </span>
           </div>
@@ -321,7 +321,7 @@ export default function DashboardPage() {
           </p>
           <Link
             to={monthPath(month, 'fixos')}
-            className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-brand-700 transition hover:text-brand-900"
+            className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-brand-700 transition hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
           >
             {budget.activeFixed.length} {budget.activeFixed.length === 1 ? 'fixo' : 'fixos'} · ver
             todos
@@ -334,7 +334,7 @@ export default function DashboardPage() {
             <p className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink/35">
               Gastos variáveis
             </p>
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-50 text-amber-700">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-50 text-amber-700 dark:bg-amber-400/10 dark:text-amber-300">
               <ReceiptIcon className="h-4 w-4" />
             </span>
           </div>
@@ -343,7 +343,7 @@ export default function DashboardPage() {
           </p>
           <Link
             to={monthPath(month, 'gastos')}
-            className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-brand-700 transition hover:text-brand-900"
+            className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-brand-700 transition hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
           >
             {monthExpenseCount} {monthExpenseCount === 1 ? 'lançamento' : 'lançamentos'} · ver
             gastos
@@ -355,7 +355,7 @@ export default function DashboardPage() {
       <section className="card p-4 sm:p-5" aria-label="Semana atual">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
               <CalendarIcon className="h-[18px] w-[18px]" />
             </span>
             <div>
@@ -389,7 +389,13 @@ export default function DashboardPage() {
               label="Uso da semana atual"
             />
             <div className="mt-2 flex flex-wrap items-center justify-between gap-3 text-[11px] font-semibold">
-              <span className={currentWeek.remaining < 0 ? 'text-rose-600' : 'text-brand-700'}>
+              <span
+                className={
+                  currentWeek.remaining < 0
+                    ? 'text-rose-600 dark:text-rose-300'
+                    : 'text-brand-700 dark:text-brand-300'
+                }
+              >
                 {currentWeek.remaining < 0
                   ? `Excedeu ${formatCents(Math.abs(currentWeek.remaining))}`
                   : `Livre ${formatCents(currentWeek.remaining)}`}
@@ -404,7 +410,7 @@ export default function DashboardPage() {
             </div>
             <Link
               to={monthPath(month, 'semanas')}
-              className="mt-4 inline-flex items-center gap-1.5 text-xs font-extrabold text-brand-700 transition hover:text-brand-900"
+              className="mt-4 inline-flex items-center gap-1.5 text-xs font-extrabold text-brand-700 transition hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
             >
               Ver todas as semanas
               <ArrowRightIcon className="h-3.5 w-3.5" />
@@ -419,7 +425,7 @@ export default function DashboardPage() {
             </p>
             <Link
               to={monthPath(month, 'semanas')}
-              className="inline-flex shrink-0 items-center gap-1.5 text-xs font-extrabold text-brand-700 transition hover:text-brand-900"
+              className="inline-flex shrink-0 items-center gap-1.5 text-xs font-extrabold text-brand-700 transition hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
             >
               Ver semanas
               <ArrowRightIcon className="h-3.5 w-3.5" />

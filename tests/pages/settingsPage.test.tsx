@@ -148,6 +148,31 @@ describe('tela de configurações', () => {
     expect(screen.getByLabelText('Meta de sobra')).toHaveValue('0,00');
   });
 
+  it('aplica o tema escolhido e mantém a preferência salva', async () => {
+    const user = userEvent.setup();
+    renderSettings();
+
+    const lightButton = screen.getByRole('button', { name: 'Claro' });
+    const darkButton = screen.getByRole('button', { name: 'Escuro' });
+    const systemButton = screen.getByRole('button', { name: 'Sistema' });
+
+    expect(systemButton).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByText(/Tema em uso: claro/)).toBeInTheDocument();
+
+    await user.click(darkButton);
+
+    expect(darkButton).toHaveAttribute('aria-pressed', 'true');
+    expect(document.documentElement).toHaveClass('dark');
+    expect(localStorage.getItem('fin:theme')).toBe('dark');
+    expect(screen.getByText(/Tema em uso: escuro/)).toBeInTheDocument();
+
+    await user.click(lightButton);
+
+    expect(lightButton).toHaveAttribute('aria-pressed', 'true');
+    expect(document.documentElement).not.toHaveClass('dark');
+    expect(localStorage.getItem('fin:theme')).toBe('light');
+  });
+
   it('exporta o backup com nome datado', async () => {
     const user = userEvent.setup();
     const createObjectURL = vi.fn(() => 'blob:backup');

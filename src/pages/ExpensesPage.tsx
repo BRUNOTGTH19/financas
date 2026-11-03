@@ -25,9 +25,10 @@ import { useFinanceStore } from '../store/financeStore';
 type FormState = { expense?: Expense } | null;
 
 function methodIconClass(method: PaymentMethod): string {
-  if (method === 'pix') return 'bg-lime/40 text-brand-900';
-  if (method === 'debito') return 'bg-brand-50 text-brand-700';
-  return 'bg-amber-50 text-amber-700';
+  if (method === 'pix') return 'bg-lime/40 text-brand-900 dark:bg-lime/15 dark:text-lime';
+  if (method === 'debito')
+    return 'bg-brand-50 text-brand-700 dark:bg-brand-400/15 dark:text-brand-200';
+  return 'bg-amber-50 text-amber-700 dark:bg-amber-400/15 dark:text-amber-200';
 }
 
 function cashMessage(cashShare: number, hasExpenses: boolean): string {
@@ -72,7 +73,7 @@ export default function ExpensesPage() {
       />
 
       <section className="grid gap-3 sm:grid-cols-2" aria-label="Resumo dos gastos">
-        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float sm:p-6">
+        <div className="relative overflow-hidden rounded-3xl bg-brand-950 p-5 text-white shadow-float dark:border dark:border-white/10 sm:p-6">
           <div className="pointer-events-none absolute -right-14 -top-16 h-40 w-40 rounded-full bg-lime/10 blur-2xl" />
           <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/45">
             <ReceiptIcon className="h-3.5 w-3.5" />
@@ -92,7 +93,7 @@ export default function ExpensesPage() {
             <p className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink/35">
               À vista ou cartão
             </p>
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
               <WalletIcon className="h-4 w-4" />
             </span>
           </div>
@@ -177,7 +178,7 @@ export default function ExpensesPage() {
                 </button>
                 <button
                   type="button"
-                  className="icon-btn h-8 w-8 shrink-0 border-transparent bg-transparent text-ink/25 hover:text-rose-600"
+                  className="icon-btn h-8 w-8 shrink-0 border-transparent bg-transparent text-ink/25 hover:text-rose-600 dark:hover:text-rose-300"
                   onClick={() => setDeleteTarget(expense)}
                   aria-label={`Excluir ${expense.description ?? paymentLabel(expense.method)}`}
                 >

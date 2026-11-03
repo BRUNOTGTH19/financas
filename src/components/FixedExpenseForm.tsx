@@ -158,7 +158,7 @@ export default function FixedExpenseForm({
           {fixed && onDelete ? (
             <button
               type="button"
-              className="inline-flex items-center gap-2 self-start rounded-full px-2 py-1 text-xs font-bold text-rose-600 transition hover:text-rose-700 sm:self-auto"
+              className="inline-flex items-center gap-2 self-start rounded-full px-2 py-1 text-xs font-bold text-rose-600 transition hover:text-rose-700 dark:text-rose-300 dark:hover:text-rose-200 sm:self-auto"
               onClick={() => onDelete(fixed)}
             >
               <TrashIcon className="h-4 w-4" />

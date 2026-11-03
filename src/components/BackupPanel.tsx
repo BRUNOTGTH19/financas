@@ -115,7 +115,7 @@ export default function BackupPanel({ onImported }: { onImported?: () => void })
             arquivo antes de alterar rendas, fixos, gastos ou meta.
           </p>
         </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-300">
           <DownloadIcon className="h-[18px] w-[18px]" />
         </span>
       </div>
@@ -154,7 +154,7 @@ export default function BackupPanel({ onImported }: { onImported?: () => void })
         </p>
       ) : null}
       {notice ? (
-        <p role="status" className="mt-2 text-xs font-semibold text-brand-700">
+        <p role="status" className="mt-2 text-xs font-semibold text-brand-700 dark:text-brand-300">
           {notice}
         </p>
       ) : null}
@@ -182,7 +182,7 @@ export default function BackupPanel({ onImported }: { onImported?: () => void })
             <>
               <p
                 role="alert"
-                className="mt-4 rounded-2xl border border-rose-200 bg-rose-50/80 px-4 py-3 text-xs font-semibold leading-relaxed text-rose-900"
+                className="mt-4 rounded-2xl border border-rose-200 bg-rose-50/80 px-4 py-3 text-xs font-semibold leading-relaxed text-rose-900 dark:border-rose-400/30 dark:bg-rose-400/10 dark:text-rose-100"
               >
                 Substituir apaga todos os dados atuais deste navegador. A ação não pode ser
                 desfeita.
