@@ -16,6 +16,7 @@ mês.
 - Configuração de renda por mês, meta de sobra global e exclusão dos dados locais.
 - Exportação e importação de backup JSON, com validação Zod, mesclagem por `id` e confirmação
   antes de substituir os dados.
+- Resumo do mês em texto para colar em uma IA externa, copiado com a Clipboard API.
 - Navegação por mês, layout responsivo e persistência local.
 
 ## Stack

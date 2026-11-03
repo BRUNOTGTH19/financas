@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from '../../src/App';
@@ -27,7 +27,15 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.useRealTimers();
+  Reflect.deleteProperty(navigator, 'clipboard');
 });
+
+function mockClipboard(writeText: (text: string) => Promise<void>) {
+  Object.defineProperty(navigator, 'clipboard', {
+    value: { writeText },
+    configurable: true,
+  });
+}
 
 describe('dashboard', () => {
   it('pede a renda quando o mês ainda não tem salário', () => {
@@ -147,5 +155,51 @@ describe('dashboard', () => {
       'href',
       '/mes/2026-11/semanas',
     );
+  });
+
+  it('copia o resumo do mês para a área de transferência', async () => {
+    setToday('2026-11-10');
+    store().setSalary('2026-11', 500_000);
+    store().setSavingsGoal(100_000);
+    store().addFixed({ name: 'Aluguel', monthlyAmount: 100_000, startMonth: '2026-11' });
+    store().addExpense({
+      date: '2026-11-10',
+      amount: 50_000,
+      method: 'pix',
+      description: 'Mercado',
+    });
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    mockClipboard(writeText);
+
+    renderDashboard();
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Copiar resumo para IA' }));
+    });
+
+    expect(writeText).toHaveBeenCalledTimes(1);
+    const summary = writeText.mock.calls[0]?.[0] as string;
+    expect(summary).toContain('Resumo financeiro — Novembro de 2026');
+    expect(summary).toContain('Salário do mês: R$ 5.000,00');
+    expect(summary).toContain('Disponível para as semanas: R$ 4.000,00');
+    expect(summary).toContain('Semana 1 (dias 01–07)');
+    expect(summary).toContain('status OK');
+    expect(summary).toContain('Saldo atual: R$ 3.500,00');
+    expect(summary).toContain('Meta de economia: R$ 1.000,00');
+    expect(summary).toContain('Projeção de fim de mês:');
+    expect(screen.getByText('Copiado!')).toBeInTheDocument();
+  });
+
+  it('mostra erro quando o navegador bloqueia a área de transferência', async () => {
+    setToday('2026-11-10');
+    mockClipboard(vi.fn().mockRejectedValue(new Error('blocked')));
+
+    renderDashboard();
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: 'Copiar resumo para IA' }));
+    });
+
+    expect(
+      screen.getByText('Não foi possível copiar. Verifique a permissão do navegador.'),
+    ).toBeInTheDocument();
   });
 });

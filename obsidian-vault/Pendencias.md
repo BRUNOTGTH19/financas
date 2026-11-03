@@ -10,6 +10,6 @@
 - [x] Workflow de deploy
 - [x] Documentação final
 - [x] Backup JSON com exportação, importação, validação e testes
-- [ ] Copiar resumo para IA
+- [x] Copiar resumo para IA com testes
 - [ ] Darkmode com preferência claro, escuro e sistema
 - [ ] Publicar no GitHub Pages

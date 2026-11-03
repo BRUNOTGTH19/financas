@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Badge, { type BadgeTone } from '../components/Badge';
 import PageHeader from '../components/PageHeader';
@@ -7,6 +8,7 @@ import {
   ArrowRightIcon,
   BanknoteIcon,
   CalendarIcon,
+  CopyIcon,
   InfoIcon,
   PlusIcon,
   ReceiptIcon,
@@ -16,6 +18,7 @@ import {
 import { calculateMonthBudget } from '../domain/budget';
 import { getCurrentWeekIndex } from '../domain/calendar';
 import { projectMonth } from '../domain/projection';
+import { buildAiSummary } from '../domain/summary';
 import type { MonthProjection, WeekStatus } from '../domain/types';
 import { useMonth } from '../hooks/useMonth';
 import { todayIso } from '../lib/dates';
@@ -81,6 +84,7 @@ export default function DashboardPage() {
   const fixedExpenses = useFinanceStore((state) => state.fixedExpenses);
   const expenses = useFinanceStore((state) => state.expenses);
   const savingsGoal = useFinanceStore((state) => state.settings.savingsGoal);
+  const [copyStatus, setCopyStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const today = todayIso();
   const todayDay = Number(today.slice(8, 10));
@@ -103,6 +107,20 @@ export default function DashboardPage() {
   const currentWeekDaily =
     currentWeek && currentWeek.cap > 0 ? Math.floor(currentWeekRemaining / currentWeekDaysLeft) : 0;
 
+  async function handleCopySummary() {
+    const summary = buildAiSummary({ budget, savingsGoal, today });
+
+    try {
+      if (!navigator.clipboard?.writeText) {
+        throw new Error('Clipboard indisponível');
+      }
+      await navigator.clipboard.writeText(summary);
+      setCopyStatus('success');
+    } catch {
+      setCopyStatus('error');
+    }
+  }
+
   return (
     <div className="space-y-6 animate-fade-up">
       <PageHeader
@@ -110,10 +128,27 @@ export default function DashboardPage() {
         title="Seu mês em uma olhada"
         description="Renda, fixos e o ritmo das semanas juntos para você decidir com calma antes de gastar."
         action={
-          <Link to={monthPath(month, 'gastos')} className="btn-lime">
-            <PlusIcon className="h-4 w-4" />
-            Registrar gasto
-          </Link>
+          <div className="flex flex-col items-start gap-2 sm:items-end">
+            <div className="flex flex-wrap gap-2">
+              <button type="button" className="btn-ghost" onClick={handleCopySummary}>
+                <CopyIcon className="h-4 w-4" />
+                Copiar resumo para IA
+              </button>
+              <Link to={monthPath(month, 'gastos')} className="btn-lime">
+                <PlusIcon className="h-4 w-4" />
+                Registrar gasto
+              </Link>
+            </div>
+            {copyStatus === 'success' ? (
+              <p role="status" className="text-xs font-semibold text-brand-700">
+                Copiado!
+              </p>
+            ) : copyStatus === 'error' ? (
+              <p role="alert" className="text-xs font-semibold text-rose-600">
+                Não foi possível copiar. Verifique a permissão do navegador.
+              </p>
+            ) : null}
+          </div>
         }
       />
 

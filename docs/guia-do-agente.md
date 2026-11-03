@@ -59,6 +59,17 @@ Formulário/UI
   economia local é preservada quando já existe; caso contrário, a meta do arquivo é usada.
 - Não commitar arquivos `financas-*.json` com dados reais; o `.gitignore` já cobre esse padrão.
 
+## Resumo para IA
+
+- `buildAiSummary` em `src/domain/summary.ts` é puro e recebe `budget`, `savingsGoal` e `today`.
+- O texto contém apenas o mês consultado: salário, fixos ativos com nomes/valores, disponível,
+  semanas (dias, teto, gasto, percentual e status), saldo atual, meta e projeção quando há renda.
+- Status no texto: `OK`, `ATENÇÃO` e `SEGURE ESSA SEMANA`.
+- Valores usam o formato brasileiro `R$ 0.000,00`; o resumo não contém JSON de backup, ids ou
+  chamadas de rede.
+- O dashboard copia com `navigator.clipboard.writeText` e mostra confirmação ou erro de permissão.
+- Testes em `tests/domain/summary.test.ts` e `tests/pages/dashboardPage.test.tsx`.
+
 ## Invariantes
 
 - Dinheiro em centavos inteiros (`number`). Nunca use float para armazenar valores.
@@ -80,6 +91,7 @@ Formulário/UI
 | Calendário    | `src/domain/calendar.ts`                                                          |
 | Orçamento     | `src/domain/budget.ts`                                                            |
 | Projeção      | `src/domain/projection.ts`                                                        |
+| Resumo IA     | `src/domain/summary.ts`                                                           |
 | Tipos         | `src/domain/types.ts`                                                             |
 | Validação     | `src/schemas/finance.ts`, `src/schemas/backup.ts`                                 |
 | Backup        | `src/lib/backup.ts`, `src/components/BackupPanel.tsx`                             |
