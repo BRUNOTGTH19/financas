@@ -16,6 +16,7 @@ Sistema de organização financeira pessoal com foco em **plano semanal de gasto
 - [[Log/2026-11-01-dashboard|Log — Dashboard]]
 - [[Log/2026-11-01-configuracoes|Log — Configurações]]
 - [[Log/2026-11-01-deploy-e-documentacao|Log — Deploy e documentação]]
+- [[Log/2026-11-03-backup-json|Log — Backup JSON]]
 - [[Pendencias|Pendências]]
 
 ## Links úteis

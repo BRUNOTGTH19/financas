@@ -31,6 +31,13 @@ export interface Settings {
   savingsGoal: number;
 }
 
+export interface FinanceData {
+  incomes: Income[];
+  fixedExpenses: FixedExpense[];
+  expenses: Expense[];
+  settings: Settings;
+}
+
 export interface WeekPeriod {
   index: number;
   startDay: number;

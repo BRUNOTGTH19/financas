@@ -9,4 +9,7 @@
 - [x] Configurações
 - [x] Workflow de deploy
 - [x] Documentação final
-- [ ] Publicar no GitHub Pages (requer repositório remoto)
+- [x] Backup JSON com exportação, importação, validação e testes
+- [ ] Copiar resumo para IA
+- [ ] Darkmode com preferência claro, escuro e sistema
+- [ ] Publicar no GitHub Pages

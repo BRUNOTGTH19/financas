@@ -14,6 +14,8 @@ mês.
 - Cadastro de gastos fixos com início, término, quitação e reativação por mês.
 - Parcelamento no cartão gera automaticamente um fixo para as parcelas futuras.
 - Configuração de renda por mês, meta de sobra global e exclusão dos dados locais.
+- Exportação e importação de backup JSON, com validação Zod, mesclagem por `id` e confirmação
+  antes de substituir os dados.
 - Navegação por mês, layout responsivo e persistência local.
 
 ## Stack
@@ -89,6 +91,9 @@ obsidian-vault/ Decisões, regras, logs e pendências
 - A meta de sobra é global; a renda é específica de cada mês.
 - Os dados ficam apenas no `localStorage` do navegador, na chave `fin:v1`, e são validados com Zod
   ao carregar.
+- Backup JSON na versão 1: `version`, `exportedAt` e `data`. A importação valida o arquivo inteiro
+  antes de alterar qualquer dado. A mesclagem usa `id` para não duplicar registros e preserva a meta
+  local quando já existe uma definida.
 
 ## Deploy
 

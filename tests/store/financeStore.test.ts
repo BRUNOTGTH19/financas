@@ -329,4 +329,56 @@ describe('persistência', () => {
     expect(store().expenses).toEqual([]);
     expect(store().settings.savingsGoal).toBe(0);
   });
+
+  it('substitui todos os dados importados', () => {
+    store().setSalary('2026-11', 500_000);
+    store().setSavingsGoal(100_000);
+
+    store().replaceData({
+      incomes: [{ id: 'inc_2', month: '2026-12', amount: 700_000 }],
+      fixedExpenses: [
+        { id: 'fix_2', name: 'Internet', monthlyAmount: 10_000, startMonth: '2026-12' },
+      ],
+      expenses: [],
+      settings: { savingsGoal: 200_000 },
+    });
+
+    expect(store().incomes).toEqual([{ id: 'inc_2', month: '2026-12', amount: 700_000 }]);
+    expect(store().fixedExpenses[0]?.name).toBe('Internet');
+    expect(store().settings.savingsGoal).toBe(200_000);
+  });
+
+  it('mescla dados importados sem duplicar ids', () => {
+    store().setSalary('2026-11', 500_000);
+
+    store().mergeData({
+      incomes: [
+        { id: 'inc_1', month: '2026-12', amount: 700_000 },
+        { id: store().incomes[0]?.id ?? '', month: '2026-11', amount: 900_000 },
+      ],
+      fixedExpenses: [],
+      expenses: [],
+      settings: { savingsGoal: 50_000 },
+    });
+
+    expect(store().incomes).toHaveLength(2);
+    expect(store().incomes.find((income) => income.id === 'inc_1')?.amount).toBe(700_000);
+    expect(store().settings.savingsGoal).toBe(50_000);
+  });
+
+  it('rejeita dados importados inválidos sem alterar o estado', () => {
+    store().setSalary('2026-11', 500_000);
+
+    expect(() =>
+      store().replaceData({
+        incomes: [{ id: 'inc_1', month: '2026-11', amount: 10.5 }],
+        fixedExpenses: [],
+        expenses: [],
+        settings: { savingsGoal: 0 },
+      }),
+    ).toThrow();
+
+    expect(store().incomes).toHaveLength(1);
+    expect(store().incomes[0]?.amount).toBe(500_000);
+  });
 });

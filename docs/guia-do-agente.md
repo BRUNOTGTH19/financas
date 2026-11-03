@@ -46,6 +46,19 @@ Formulário/UI
 - Mudanças de formato persistido exigem bump de `STORAGE_VERSION` e estratégia de migração; o
   `mergePersistedState` atual descarta o estado persistido inválido e mantém o estado inicial.
 
+## Backup JSON
+
+- Formato: `{ version: 1, exportedAt: ISO-8601, data: { incomes, fixedExpenses, expenses, settings } }`.
+- Exportação: `createBackup`/`serializeBackup` em `src/lib/backup.ts`; o download usa
+  `financas-YYYY-MM-DD.json` e nunca envia dados para a rede.
+- Importação: `parseBackup` valida o JSON inteiro com `backupSchema` antes de chamar a store. Um
+  arquivo inválido não altera nenhum dado.
+- Depois da validação, a UI pergunta se o usuário quer **mesclar** ou **substituir tudo**. A
+  substituição exige uma segunda confirmação explícita.
+- Mesclagem: registros com o mesmo `id` não são duplicados e o registro local prevalece. A meta de
+  economia local é preservada quando já existe; caso contrário, a meta do arquivo é usada.
+- Não commitar arquivos `financas-*.json` com dados reais; o `.gitignore` já cobre esse padrão.
+
 ## Invariantes
 
 - Dinheiro em centavos inteiros (`number`). Nunca use float para armazenar valores.
@@ -68,7 +81,8 @@ Formulário/UI
 | Orçamento     | `src/domain/budget.ts`                                                            |
 | Projeção      | `src/domain/projection.ts`                                                        |
 | Tipos         | `src/domain/types.ts`                                                             |
-| Validação     | `src/schemas/finance.ts`                                                          |
+| Validação     | `src/schemas/finance.ts`, `src/schemas/backup.ts`                                 |
+| Backup        | `src/lib/backup.ts`, `src/components/BackupPanel.tsx`                             |
 | Estado        | `src/store/financeStore.ts`                                                       |
 | Rotas         | `src/App.tsx`, `src/components/MonthLayout.tsx`, `src/lib/navigation.ts`          |
 | Shell e UI    | `src/components/AppShell.tsx`, `PageHeader.tsx`, `Modal.tsx`, `CurrencyInput.tsx` |

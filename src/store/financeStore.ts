@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { addMonthsToMonthKey } from '../domain/calendar';
-import type { Expense, FixedExpense, Income, MonthKey, Settings } from '../domain/types';
+import type { Expense, FinanceData, FixedExpense, Income, MonthKey } from '../domain/types';
+import { mergeFinanceData } from '../lib/backup';
 import { createId } from '../lib/id';
 import {
   expenseInputSchema,
@@ -17,12 +18,7 @@ import {
 export const STORAGE_KEY = 'fin:v1';
 export const STORAGE_VERSION = 1;
 
-export interface FinanceData {
-  incomes: Income[];
-  fixedExpenses: FixedExpense[];
-  expenses: Expense[];
-  settings: Settings;
-}
+export type { FinanceData };
 
 export interface FinanceActions {
   setSalary: (month: MonthKey, amount: number) => void;
@@ -34,6 +30,8 @@ export interface FinanceActions {
   addExpense: (input: ExpenseFormInput) => string;
   updateExpense: (id: string, input: ExpenseFormInput) => void;
   removeExpense: (id: string) => void;
+  replaceData: (data: FinanceData) => void;
+  mergeData: (data: FinanceData) => void;
   resetAll: () => void;
 }
 
@@ -214,6 +212,15 @@ export const useFinanceStore = create<FinanceState>()(
             ? state.fixedExpenses.filter((fixed) => fixed.id !== existing.linkedFixedId)
             : state.fixedExpenses,
         }));
+      },
+
+      replaceData: (data) => {
+        set(persistedStateSchema.parse(data));
+      },
+
+      mergeData: (data) => {
+        const parsed = persistedStateSchema.parse(data);
+        set((state) => mergeFinanceData(state, parsed));
       },
 
       resetAll: () => {

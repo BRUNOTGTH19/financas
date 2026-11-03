@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import BackupPanel from '../components/BackupPanel';
 import ConfirmDialog from '../components/ConfirmDialog';
 import CurrencyInput from '../components/CurrencyInput';
 import PageHeader from '../components/PageHeader';
@@ -183,13 +184,15 @@ export default function SettingsPage() {
       <PageHeader
         eyebrow="Ajustes"
         title="Configurações"
-        description="Renda do mês, meta de sobra e controle dos dados salvos neste navegador."
+        description="Renda do mês, meta de sobra, backup e controle dos dados salvos neste navegador."
       />
 
       <section className="grid gap-3 lg:grid-cols-2" aria-label="Ajustes financeiros">
         <SalaryForm key={`salary-${month}-${formVersion}`} month={month} initialAmount={salary} />
         <SavingsGoalForm key={`goal-${formVersion}`} initialAmount={savingsGoal} />
       </section>
+
+      <BackupPanel onImported={() => setFormVersion((version) => version + 1)} />
 
       <section
         className="rounded-3xl border border-rose-200/80 bg-rose-50/40 p-5 sm:p-6"
